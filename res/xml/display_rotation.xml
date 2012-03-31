@@ -21,6 +21,10 @@
     <CheckBoxPreference
         android:key="accelerometer"
         android:title="@string/accelerometer_title" />
+    <CheckBoxPreference
+        android:key="accelerometer_lockscreen"
+        android:title="@string/accelerometer_lockscreen_title"
+        android:dependency="accelerometer" />
     <PreferenceCategory
         android:key="display_rotation_category"
         android:title="@string/display_rotation_category_title" />
