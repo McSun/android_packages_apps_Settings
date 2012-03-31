@@ -58,6 +58,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
     private static final String KEY_TRACKBALL_WAKE = "pref_trackball_wake";
+    private static final String KEY_HAS_NAVIGATION_BAR = "has_navigation_bar";
 
     private static final String ROTATION_ANGLE_0 = "0";
     private static final String ROTATION_ANGLE_90 = "90";
@@ -70,6 +71,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mTrackballWake;
     private CheckBoxPreference mNotificationPulse;
     private CheckBoxPreference mBatteryPulse;
+    private CheckBoxPreference mNavigationBar;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -122,6 +124,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 Log.e(TAG, Settings.System.NOTIFICATION_LIGHT_PULSE + " not found");
             }
         }
+
+	mNavigationBar = (CheckBoxPreference) findPreference(KEY_HAS_NAVIGATION_BAR);
+	if (mNavigationBar != null) {
+	    mNavigationBar.setChecked(Settings.System.getInt(resolver,
+		    Settings.System.HAS_NAVIGATION_BAR, 0) == 1);
+	}
 
         mBatteryPulse = (CheckBoxPreference) findPreference(KEY_BATTERY_PULSE);
         if (mBatteryPulse != null) {
@@ -270,7 +278,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_LIGHT_PULSE,
                     value ? 1 : 0);
             return true;
-        } else if (preference == mBatteryPulse) {
+        } else if (preference == mNavigationBar) {
+            boolean value = mNavigationBar.isChecked();
+            Settings.System.putInt(getContentResolver(), Settings.System.HAS_NAVIGATION_BAR,
+                    value ? 1 : 0);
+            return true;
+        }  else if (preference == mBatteryPulse) {
             boolean value = mBatteryPulse.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_LIGHT_PULSE,
                     value ? 1 : 0);

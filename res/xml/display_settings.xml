@@ -48,6 +48,12 @@
             android:persistent="false" />
 
         <CheckBoxPreference
+            android:key="has_navigation_bar"
+            android:title="@string/has_navigation_bar_title"
+ 	    android:summary="@string/has_navigation_bar_summary"
+            android:persistent="false" />
+
+        <CheckBoxPreference
             android:key="battery_pulse"
             android:title="@string/battery_pulse_title"
             android:persistent="false" />
