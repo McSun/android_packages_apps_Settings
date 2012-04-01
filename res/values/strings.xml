@@ -15,6 +15,40 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Strings for BCM Mounts2SD Menu -->
+    <string name="m2sd_management_title">Mounts2SD Management</string>
+    <string name="m2sd_management_summary">Customize the build-in sd-ext script</string>
+    <string name="m2sd_switch_title">Enabled</string>
+    <string name="m2sd_switch_summary">Warning! In disabled state, content already moved to sd-ext is not moved back. First disable all the m2sd options, reboot and then disable this.</string>
+    <string name="m2sd_content_category_title">Move Content</string>
+    <string name="m2sd_apps_switch_title">Applications</string>
+    <string name="m2sd_apps_switch_summary">Move all APK files to the sd-ext partition</string>
+    <string name="m2sd_data_switch_title">Application Data</string>
+    <string name="m2sd_data_switch_summary">Move all application related data content to the sd-ext partition</string>
+    <string name="m2sd_dalvik_switch_title">Dalvik Cache</string>
+    <string name="m2sd_dalvik_switch_summary">Move the dalvik cache to the sd-ext partition</string>
+    <string name="m2sd_cache_category_title">Cache Settings</string>
+    <string name="m2sd_cache_switch_title">Cache</string>
+    <string name="m2sd_cache_switch_summary">Move cache to a temp file system. By selecting auto the cache is only moved when the internal one is to small</string>
+    <string name="m2sd_cache_download_switch_title">Download Cache</string>
+    <string name="m2sd_cache_download_switch_summary">Only move the download cache to a temp file system</string>
+    <string name="m2sd_memory_category_title">Memory Settings</string>
+    <string name="m2sd_swap_switch_title">SWAP</string>
+    <string name="m2sd_swap_switch_summary">Activate SWAP partition on boot</string>
+    <string name="m2sd_sdcard_category_title">Partition Settings</string>
+    <string name="m2sd_journal_switch_title">Use Journal</string>
+    <string name="m2sd_journal_switch_summary">Disable/Enable journal on sd-ext ext3 and ext4 file system</string>
+    <string name="m2sd_readahead_value_title">Readahead</string>
+    <string name="m2sd_readahead_value_summary">The readahead value for the sdcard. Note that this will also affect the fat32 partition</string>
+    <string name="m2sd_extfs_value_title">File system type</string>
+    <string name="m2sd_extfs_value_summary">Which file system to mount the sd-ext partition as</string>
+    <string name="m2sd_fschk_switch_title">File system check</string>
+    <string name="m2sd_fschk_switch_summary">Run file system checks during boot</string>
+    <string name="m2sd_noatime_switch_title">No Atime</string>
+    <string name="m2sd_noatime_switch_summary">Disable atime and diratime</string>
+    <string name="m2sd_rmount_switch_title">Reversed Mount</string>
+    <string name="m2sd_rmount_switch_summary">Use data as /sd-ext and sd-ext as /data</string>
+
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>
 

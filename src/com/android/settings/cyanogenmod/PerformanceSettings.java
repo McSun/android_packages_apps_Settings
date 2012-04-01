@@ -26,6 +26,7 @@ import android.preference.PreferenceScreen;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
 
 /**
  * Performance Settings
@@ -44,6 +45,10 @@ public class PerformanceSettings extends SettingsPreferenceFragment
 
     private static final String USE_16BPP_ALPHA_PROP = "persist.sys.use_16bpp_alpha";
 
+    private static final String M2SD_MANAGEMENT = "m2sd_management";
+    private static final String M2SD_SCRIPT = SystemProperties.get("ro.m2sd.path.script", "/system/etc/init.d/10mounts2sd");
+    private static final String M2SD_SDCARD = SystemProperties.get("ro.m2sd.path.sdcard", "/dev/block/mmcblk0");
+
     private CheckBoxPreference mUseDitheringPref;
 
     private CheckBoxPreference mUse16bppAlphaPref;
@@ -59,6 +64,10 @@ public class PerformanceSettings extends SettingsPreferenceFragment
             addPreferencesFromResource(R.xml.performance_settings);
 
             PreferenceScreen prefSet = getPreferenceScreen();
+
+	    if (Utils.fileExists(M2SD_SCRIPT) == false || Utils.fileExists(M2SD_SDCARD) == false) {
+		getPreferenceScreen().removePreference(findPreference(M2SD_MANAGEMENT));
+	    }
 
             mUseDitheringPref = (CheckBoxPreference) prefSet.findPreference(USE_DITHERING_PREF);
             mUse16bppAlphaPref = (CheckBoxPreference) prefSet.findPreference(USE_16BPP_ALPHA_PREF);

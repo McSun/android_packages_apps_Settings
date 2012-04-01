@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:title="@string/m2sd_management_title"
+	xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+	<CheckBoxPreference
+		android:key="m2sd_switch"
+		android:title="@string/m2sd_switch_title"
+		android:summary="@string/m2sd_switch_summary" />
+
+        <PreferenceCategory
+            	android:key="m2sd_content_category"
+            	android:title="@string/m2sd_content_category_title"/>
+
+	<CheckBoxPreference
+		android:key="m2sd_apps_switch"
+		android:title="@string/m2sd_apps_switch_title"
+		android:summary="@string/m2sd_apps_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_data_switch"
+		android:title="@string/m2sd_data_switch_title"
+		android:summary="@string/m2sd_data_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_dalvik_switch"
+		android:title="@string/m2sd_dalvik_switch_title"
+		android:summary="@string/m2sd_dalvik_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+        <PreferenceCategory
+            	android:key="m2sd_cache_category"
+            	android:title="@string/m2sd_cache_category_title"/>
+
+	<ListPreference
+		android:key="m2sd_cache_switch"
+		android:title="@string/m2sd_cache_switch_title"
+		android:dialogTitle="@string/m2sd_cache_switch_title"
+		android:summary="@string/m2sd_cache_switch_summary"
+        	android:entries="@array/m2sd_state_entries"
+        	android:entryValues="@array/m2sd_state_values"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_cache_download_switch"
+		android:title="@string/m2sd_cache_download_switch_title"
+		android:summary="@string/m2sd_cache_download_switch_summary"
+        	android:dependency="m2sd_cache_switch" />
+
+        <PreferenceCategory
+            	android:key="m2sd_memory_category"
+            	android:title="@string/m2sd_memory_category_title"/>
+
+	<CheckBoxPreference
+		android:key="m2sd_swap_switch"
+		android:title="@string/m2sd_swap_switch_title"
+		android:summary="@string/m2sd_swap_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+        <PreferenceCategory
+            	android:key="m2sd_sdcard_category"
+            	android:title="@string/m2sd_sdcard_category_title"/>
+
+	<ListPreference
+		android:key="m2sd_journal_switch"
+		android:title="@string/m2sd_journal_switch_title"
+		android:dialogTitle="@string/m2sd_journal_switch_title"
+		android:summary="@string/m2sd_journal_switch_summary"
+        	android:entries="@array/m2sd_state_entries"
+        	android:entryValues="@array/m2sd_state_values"
+        	android:dependency="m2sd_switch" />
+
+	<ListPreference
+		android:key="m2sd_readahead_value"
+		android:title="@string/m2sd_readahead_value_title"
+		android:dialogTitle="@string/m2sd_readahead_value_title"
+		android:summary="@string/m2sd_readahead_value_summary"
+        	android:entries="@array/m2sd_readahead_entries"
+        	android:entryValues="@array/m2sd_readahead_values"
+        	android:dependency="m2sd_switch" />
+
+	<ListPreference
+		android:key="m2sd_extfs_value"
+		android:title="@string/m2sd_extfs_value_title"
+		android:dialogTitle="@string/m2sd_extfs_value_title"
+		android:summary="@string/m2sd_extfs_value_summary"
+        	android:entries="@array/m2sd_extfs_entries"
+        	android:entryValues="@array/m2sd_extfs_values"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_fschk_switch"
+		android:title="@string/m2sd_fschk_switch_title"
+		android:summary="@string/m2sd_fschk_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_noatime_switch"
+		android:title="@string/m2sd_noatime_switch_title"
+		android:summary="@string/m2sd_noatime_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+	<CheckBoxPreference
+		android:key="m2sd_rmount_switch"
+		android:title="@string/m2sd_rmount_switch_title"
+		android:summary="@string/m2sd_rmount_switch_summary"
+        	android:dependency="m2sd_switch" />
+
+</PreferenceScreen>
