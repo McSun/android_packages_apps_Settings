@@ -72,6 +72,6 @@
 	    android:key="pref_trackball_wake"
 	    android:title="@string/pref_trackball_wake_title"
 	    android:summary="@string/pref_trackball_wake_summary"
-	    android:defaultValue="false" />
+	    android:defaultValue="true" />
 
 </PreferenceScreen>
