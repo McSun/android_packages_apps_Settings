@@ -132,6 +132,10 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 				mM2sdSwapSwitch.setEnabled(false);
 				Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP, "0");
 			}
+
+			if ("0".equals(lM2sdCacheSwitch)) {
+				mM2sdCacheDownloadSwitch.setEnabled(false);
+			}
 		}
 	}
 
@@ -171,7 +175,16 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
 		if (newValue != null) {
 			if (preference == mM2sdCacheSwitch) {
-				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_CACHE_SWITCH_PROP, (String) newValue) ? true : false;
+				String sValue = (String) newValue;
+
+				if ("0".equals(sValue)) {
+					mM2sdCacheDownloadSwitch.setEnabled(false);
+
+				} else {
+					mM2sdCacheDownloadSwitch.setEnabled(true);
+				}
+
+				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_CACHE_SWITCH_PROP, sValue) ? true : false;
 
 			} else if (preference == mM2sdJournalSwitch) {
 				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_JOURNAL_SWITCH_PROP, (String) newValue) ? true : false;
