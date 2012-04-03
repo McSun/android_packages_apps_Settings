@@ -129,10 +129,7 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 
 			// Remove SWAP pref is there is no SWAP support with current kernel
 			if (Utils.fileExists("/proc/swaps") == false) {
-				// This line should be removed once more options is added to this category
-				getPreferenceScreen().removePreference(prefSet.findPreference("m2sd_memory_category"));
-
-				getPreferenceScreen().removePreference(mM2sdSwapSwitch);
+				mM2sdSwapSwitch.setEnabled(false);
 				Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP, "0");
 			}
 		}
