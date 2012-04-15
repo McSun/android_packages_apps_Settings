@@ -47,4 +47,10 @@
         android:entryValues="@array/entryvalues_font_size"
         android:dialogTitle="@string/dialog_title_font_size" />
 
+    <CheckBoxPreference
+	android:key="recent_app_list_search_key"
+	android:title="@string/recent_app_list_search_key_title"
+	android:summary="@string/recent_app_list_search_key_summary"
+	android:persistent="false" />
+
 </PreferenceScreen>

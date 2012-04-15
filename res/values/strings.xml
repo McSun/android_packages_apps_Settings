@@ -49,6 +49,9 @@
     <string name="m2sd_rmount_switch_title">Reversed Mount</string>
     <string name="m2sd_rmount_switch_summary">Use data as /sd-ext and sd-ext as /data</string>
 
+    <string name="recent_app_list_search_key_title">Search Key Recent Apps</string>
+    <string name="recent_app_list_search_key_summary">Use the search key to access the list of recent apps</string>
+
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>
 

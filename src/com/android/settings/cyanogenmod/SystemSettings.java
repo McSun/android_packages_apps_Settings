@@ -16,14 +16,17 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.content.ContentResolver;
 import android.app.ActivityManagerNative;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.ListPreference;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.util.Log;
 
 import com.android.settings.R;
@@ -34,10 +37,12 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "SystemSettings";
 
+    private static final String KEY_RECENT_APP_LIST_SEARCH_KEY = "recent_app_list_search_key";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
 
     private ListPreference mFontSizePref;
+    private CheckBoxPreference mRecentAppListSearchKey;
 
     private final Configuration mCurConfig = new Configuration();
     
@@ -47,11 +52,19 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.system_settings);
 
+   	ContentResolver resolver = getActivity().getContentResolver();
+
         mFontSizePref = (ListPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         if (Utils.isScreenLarge()) {
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER));
         }
+
+	mRecentAppListSearchKey = (CheckBoxPreference) findPreference(KEY_RECENT_APP_LIST_SEARCH_KEY);
+	if (mRecentAppListSearchKey != null) {
+		mRecentAppListSearchKey.setChecked(Settings.System.getInt(resolver,
+			Settings.System.RECENT_APP_LIST_SEARCH_KEY, 1) == 1);	
+	}
     }
 
     int floatToIndex(float val) {
@@ -112,7 +125,15 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+	if (preference == mRecentAppListSearchKey) {
+		Settings.System.putInt(getContentResolver(), Settings.System.RECENT_APP_LIST_SEARCH_KEY,
+			mRecentAppListSearchKey.isChecked() ? 1 : 0);
+
+		return true;
+
+	} else {
+        	return super.onPreferenceTreeClick(preferenceScreen, preference);
+	}
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
