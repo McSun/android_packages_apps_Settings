@@ -73,8 +73,13 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
 
         mAccelerometer = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER);
         mAccelerometer.setPersistent(false);
+
         mAccelerometerLS = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER_LOCKSCREEN);
-        mAccelerometerLS.setPersistent(false);
+	if (mAccelerometerLS != null) {
+		mAccelerometerLS.setChecked(Settings.System.getInt(getContentResolver(),
+			Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, 1) == 1);	
+	}
+
         mRotation0Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_0_PREF);
         mRotation90Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_90_PREF);
         mRotation180Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_180_PREF);

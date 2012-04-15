@@ -25,7 +25,7 @@
         android:key="accelerometer_lockscreen"
         android:title="@string/accelerometer_lockscreen_title"
         android:dependency="accelerometer"
-	android:defaultValue="true" />
+	android:persistent="false" />
     <PreferenceCategory
         android:key="display_rotation_category"
         android:title="@string/display_rotation_category_title" />
