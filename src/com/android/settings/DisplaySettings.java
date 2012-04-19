@@ -18,31 +18,23 @@ package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
-import android.app.ActivityManagerNative;
+import java.util.ArrayList;
+
 import android.app.admin.DevicePolicyManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
-import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
-import android.view.IWindowManager;
-import android.view.Surface;
 
 import com.android.settings.cyanogenmod.DisplayRotation;
-import com.android.settings.R;
-
-import java.util.ArrayList;
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -72,6 +64,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mNotificationPulse;
     private CheckBoxPreference mBatteryPulse;
     private CheckBoxPreference mNavigationBar;
+    private CheckBoxPreference mBatteryPulse;
+    private PreferenceScreen mNotificationPulse;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -110,18 +104,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(mAutomaticBacklightPreference);
         }
 
-        mNotificationPulse = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_PULSE);
-        if (mNotificationPulse != null
-                && getResources().getBoolean(
-                        com.android.internal.R.bool.config_intrusiveNotificationLed) == false) {
-            getPreferenceScreen().removePreference(mNotificationPulse);
-        } else {
-            try {
-                mNotificationPulse.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.NOTIFICATION_LIGHT_PULSE) == 1);
-                mNotificationPulse.setOnPreferenceChangeListener(this);
-            } catch (SettingNotFoundException snfe) {
-                Log.e(TAG, Settings.System.NOTIFICATION_LIGHT_PULSE + " not found");
+        mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
+        if (mNotificationPulse != null) {
+            if (!getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed)) {
+                getPreferenceScreen().removePreference(mNotificationPulse);
+            } else {
+                updateLightPulseDescription();
             }
         }
 
@@ -168,7 +156,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (!rotationEnabled) {
             summary.append(getString(R.string.display_rotation_disabled));
         } else {
-            ArrayList rotationList = new ArrayList();
+            ArrayList<String> rotationList = new ArrayList<String>();
             String delim = "";
             summary.append(getString(R.string.display_rotation_enabled) + " ");
             if ((mode & DisplayRotation.ROTATION_0_MODE) != 0) {
@@ -254,10 +242,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
+    private void updateLightPulseDescription() {
+        if (Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_LIGHT_PULSE, 0) == 1) {
+            mNotificationPulse.setSummary(getString(R.string.notification_light_enabled));
+        } else {
+            mNotificationPulse.setSummary(getString(R.string.notification_light_disabled));
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         updateDisplayRotationPreferenceDescription();
+        updateLightPulseDescription();
 
         getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), true,
@@ -273,12 +271,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mNotificationPulse) {
-            boolean value = mNotificationPulse.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_LIGHT_PULSE,
-                    value ? 1 : 0);
-            return true;
-        } else if (preference == mNavigationBar) {
+        if (preference == mNavigationBar) {
             boolean value = mNavigationBar.isChecked();
             Settings.System.putInt(getContentResolver(), Settings.System.HAS_NAVIGATION_BAR,
                     value ? 1 : 0);
@@ -312,7 +305,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
         }
-
         return true;
     }
 }
