@@ -61,8 +61,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mTrackballWake;
-    private CheckBoxPreference mNotificationPulse;
-    private CheckBoxPreference mBatteryPulse;
     private CheckBoxPreference mNavigationBar;
     private CheckBoxPreference mBatteryPulse;
     private PreferenceScreen mNotificationPulse;
