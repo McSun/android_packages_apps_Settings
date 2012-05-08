@@ -666,6 +666,9 @@
     <string name="vibrate_on_ring_title">Vibrate and ring</string>
     <!-- Sound settings screen, setting option name -->
     <string name="notification_sound_title">Default notification</string>
+    <!-- Enable/Disable the software navigation buttons -->
+    <string name="has_navigation_bar_title">Sofware navigation bar</string>
+    <string name="has_navigation_bar_summary">Display the ICS on screen software keys (Reboot required)</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the incoming call volume -->
     <string name="incoming_call_volume_title">Ringtone</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the notification volume -->
@@ -744,6 +747,7 @@
     <string name="display_settings">Display</string>
     <!-- Sound & display settings screen, accelerometer-based rotation check box label -->
     <string name="accelerometer_title">Auto-rotate screen</string>
+    <string name="accelerometer_lockscreen_title">Auto-rotate lock screen</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is selected -->
     <string name="accelerometer_summary_on" product="tablet">Switch orientation automatically when rotating tablet</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is selected -->
@@ -4378,6 +4382,8 @@ found in the list of installed apps.</string>
     <string name="display_category_wakeup_options_title">Wakeup options</string>
     <string name="pref_volume_wake_title">Volume rocker wake</string>
     <string name="pref_volume_wake_summary">Pressing the volume rocker up/down will wake the device</string>
+    <string name="pref_trackball_wake_title">Trackball wake</string>
+    <string name="pref_trackball_wake_summary">Pressing the trackball will wake the device</string>
 
     <string name="profile_write_nfc_tag">Write to NFC tag</string>
     <string name="profile_write_touch_tag">Touch tag to write</string>
