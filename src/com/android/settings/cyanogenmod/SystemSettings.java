@@ -40,6 +40,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private static final String KEY_RECENT_APP_LIST_SEARCH_KEY = "recent_app_list_search_key";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
+    private static final String KEY_NAVIGATION_BAR = "navigation_bar";
 
     private ListPreference mFontSizePref;
     private CheckBoxPreference mRecentAppListSearchKey;
@@ -58,6 +59,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         mFontSizePref.setOnPreferenceChangeListener(this);
         if (Utils.isScreenLarge()) {
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER));
+        }
+        if (Utils.isScreenLarge() || !getResources().getBoolean(
+                com.android.internal.R.bool.config_showNavigationBar)) {
+            getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
         }
 
 	mRecentAppListSearchKey = (CheckBoxPreference) findPreference(KEY_RECENT_APP_LIST_SEARCH_KEY);
