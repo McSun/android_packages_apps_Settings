@@ -76,6 +76,10 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 		super.onCreate(savedInstanceState);
 
 		if (getPreferenceManager() != null) {
+			if(!M2SD_PATH_PROPS.endsWith("/")) {
+				M2SD_PATH_PROPS += "/";
+			}
+			
 			addPreferencesFromResource(R.xml.m2sd_management_settings);
 
 			PreferenceScreen prefSet = getPreferenceScreen();
