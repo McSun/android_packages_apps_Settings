@@ -70,6 +70,7 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 	private ListPreference mM2sdReadaheadValue;
 	private ListPreference mM2sdExtfsValue;
 	private CheckBoxPreference mM2sdRmountSwitch;
+	private String mPropsPath;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,9 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 
 		if (getPreferenceManager() != null) {
 			if(!M2SD_PATH_PROPS.endsWith("/")) {
-				M2SD_PATH_PROPS += "/";
+				mPropsPath = M2SD_PATH_PROPS + "/";
+			} else {
+				mPropsPath = M2SD_PATH_PROPS;
 			}
 			
 			addPreferencesFromResource(R.xml.m2sd_management_settings);
@@ -98,19 +101,19 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 			mM2sdExtfsValue = (ListPreference) prefSet.findPreference(M2SD_EXTFS_VALUE);
 			mM2sdRmountSwitch = (CheckBoxPreference) prefSet.findPreference(M2SD_RMOUNT_SWITCH);
 
-			String lM2sdSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_SWITCH_PROP) : M2SD_SWITCH_DEFAULT;
-			String lM2sdAppsSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_APPS_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_APPS_SWITCH_PROP) : M2SD_APPS_SWITCH_DEFAULT;
-			String lM2sdDataSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_DATA_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_DATA_SWITCH_PROP) : M2SD_DATA_SWITCH_DEFAULT;
-			String lM2sdDalvikSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_DALVIK_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_DALVIK_SWITCH_PROP) : M2SD_DALVIK_SWITCH_DEFAULT;
-			String lM2sdCacheSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_CACHE_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_CACHE_SWITCH_PROP) : M2SD_CACHE_SWITCH_DEFAULT;
-			String lM2sdCacheDownloadSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_CACHE_DOWNLOAD_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_CACHE_DOWNLOAD_SWITCH_PROP) : M2SD_CACHE_DOWNLOAD_SWITCH_DEFAULT;
-			String lM2sdSwapSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP) : M2SD_SWAP_SWITCH_DEFAULT;
-			String lM2sdFschkSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_FSCHK_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_FSCHK_SWITCH_PROP) : M2SD_FSCHK_SWITCH_DEFAULT;
-			String lM2sdNoatimeSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_NOATIME_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_NOATIME_SWITCH_PROP) : M2SD_NOATIME_SWITCH_DEFAULT;
-			String lM2sdJournalSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_JOURNAL_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_JOURNAL_SWITCH_PROP) : M2SD_JOURNAL_SWITCH_DEFAULT;
-			String lM2sdReadaheadValue = Utils.fileExists(M2SD_PATH_PROPS + M2SD_READAHEAD_VALUE_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_READAHEAD_VALUE_PROP) : M2SD_READAHEAD_VALUE_DEFAULT;
-			String lM2sdExtfsValue = Utils.fileExists(M2SD_PATH_PROPS + M2SD_EXTFS_VALUE_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_EXTFS_VALUE_PROP) : M2SD_EXTFS_VALUE_DEFAULT;
-			String lM2sdRmountSwitch = Utils.fileExists(M2SD_PATH_PROPS + M2SD_RMOUNT_SWITCH_PROP) ? Utils.fileReadOneLine(M2SD_PATH_PROPS + M2SD_RMOUNT_SWITCH_PROP) : M2SD_RMOUNT_SWITCH_DEFAULT;
+			String lM2sdSwitch = Utils.fileExists(mPropsPath + M2SD_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_SWITCH_PROP) : M2SD_SWITCH_DEFAULT;
+			String lM2sdAppsSwitch = Utils.fileExists(mPropsPath + M2SD_APPS_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_APPS_SWITCH_PROP) : M2SD_APPS_SWITCH_DEFAULT;
+			String lM2sdDataSwitch = Utils.fileExists(mPropsPath + M2SD_DATA_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_DATA_SWITCH_PROP) : M2SD_DATA_SWITCH_DEFAULT;
+			String lM2sdDalvikSwitch = Utils.fileExists(mPropsPath + M2SD_DALVIK_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_DALVIK_SWITCH_PROP) : M2SD_DALVIK_SWITCH_DEFAULT;
+			String lM2sdCacheSwitch = Utils.fileExists(mPropsPath + M2SD_CACHE_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_CACHE_SWITCH_PROP) : M2SD_CACHE_SWITCH_DEFAULT;
+			String lM2sdCacheDownloadSwitch = Utils.fileExists(mPropsPath + M2SD_CACHE_DOWNLOAD_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_CACHE_DOWNLOAD_SWITCH_PROP) : M2SD_CACHE_DOWNLOAD_SWITCH_DEFAULT;
+			String lM2sdSwapSwitch = Utils.fileExists(mPropsPath + M2SD_SWAP_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_SWAP_SWITCH_PROP) : M2SD_SWAP_SWITCH_DEFAULT;
+			String lM2sdFschkSwitch = Utils.fileExists(mPropsPath + M2SD_FSCHK_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_FSCHK_SWITCH_PROP) : M2SD_FSCHK_SWITCH_DEFAULT;
+			String lM2sdNoatimeSwitch = Utils.fileExists(mPropsPath + M2SD_NOATIME_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_NOATIME_SWITCH_PROP) : M2SD_NOATIME_SWITCH_DEFAULT;
+			String lM2sdJournalSwitch = Utils.fileExists(mPropsPath + M2SD_JOURNAL_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_JOURNAL_SWITCH_PROP) : M2SD_JOURNAL_SWITCH_DEFAULT;
+			String lM2sdReadaheadValue = Utils.fileExists(mPropsPath + M2SD_READAHEAD_VALUE_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_READAHEAD_VALUE_PROP) : M2SD_READAHEAD_VALUE_DEFAULT;
+			String lM2sdExtfsValue = Utils.fileExists(mPropsPath + M2SD_EXTFS_VALUE_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_EXTFS_VALUE_PROP) : M2SD_EXTFS_VALUE_DEFAULT;
+			String lM2sdRmountSwitch = Utils.fileExists(mPropsPath + M2SD_RMOUNT_SWITCH_PROP) ? Utils.fileReadOneLine(mPropsPath + M2SD_RMOUNT_SWITCH_PROP) : M2SD_RMOUNT_SWITCH_DEFAULT;
 
 			mM2sdSwitch.setChecked("1".equals(lM2sdSwitch));
 			mM2sdAppsSwitch.setChecked("1".equals(lM2sdAppsSwitch));
@@ -134,7 +137,7 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 			// Remove SWAP pref is there is no SWAP support with current kernel
 			if (Utils.fileExists("/proc/swaps") == false) {
 				mM2sdSwapSwitch.setEnabled(false);
-				Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP, "0");
+				Utils.fileWriteOneLine(mPropsPath + M2SD_SWAP_SWITCH_PROP, "0");
 			}
 
 			if ("0".equals(lM2sdCacheSwitch)) {
@@ -146,31 +149,31 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 	@Override
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
 		if (preference == mM2sdSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_SWITCH_PROP, mM2sdSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_SWITCH_PROP, mM2sdSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdAppsSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_APPS_SWITCH_PROP, mM2sdAppsSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_APPS_SWITCH_PROP, mM2sdAppsSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdDataSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_DATA_SWITCH_PROP, mM2sdDataSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_DATA_SWITCH_PROP, mM2sdDataSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdDalvikSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_DALVIK_SWITCH_PROP, mM2sdDalvikSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_DALVIK_SWITCH_PROP, mM2sdDalvikSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdCacheDownloadSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_CACHE_DOWNLOAD_SWITCH_PROP, mM2sdCacheDownloadSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_CACHE_DOWNLOAD_SWITCH_PROP, mM2sdCacheDownloadSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdSwapSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_SWAP_SWITCH_PROP, mM2sdSwapSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_SWAP_SWITCH_PROP, mM2sdSwapSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdFschkSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_FSCHK_SWITCH_PROP, mM2sdFschkSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_FSCHK_SWITCH_PROP, mM2sdFschkSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdNoatimeSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_NOATIME_SWITCH_PROP, mM2sdNoatimeSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_NOATIME_SWITCH_PROP, mM2sdNoatimeSwitch.isChecked() ? "1" : "0") ? true : false;
 
 		} else if (preference == mM2sdRmountSwitch) {
-			return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_RMOUNT_SWITCH_PROP, mM2sdRmountSwitch.isChecked() ? "1" : "0") ? true : false;
+			return Utils.fileWriteOneLine(mPropsPath + M2SD_RMOUNT_SWITCH_PROP, mM2sdRmountSwitch.isChecked() ? "1" : "0") ? true : false;
 		} 
 
 		return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -188,16 +191,16 @@ public class m2sdManagement extends SettingsPreferenceFragment implements Prefer
 					mM2sdCacheDownloadSwitch.setEnabled(true);
 				}
 
-				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_CACHE_SWITCH_PROP, sValue) ? true : false;
+				return Utils.fileWriteOneLine(mPropsPath + M2SD_CACHE_SWITCH_PROP, sValue) ? true : false;
 
 			} else if (preference == mM2sdJournalSwitch) {
-				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_JOURNAL_SWITCH_PROP, (String) newValue) ? true : false;
+				return Utils.fileWriteOneLine(mPropsPath + M2SD_JOURNAL_SWITCH_PROP, (String) newValue) ? true : false;
 
 			} else if (preference == mM2sdReadaheadValue) {
-				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_READAHEAD_VALUE_PROP, (String) newValue) ? true : false;
+				return Utils.fileWriteOneLine(mPropsPath + M2SD_READAHEAD_VALUE_PROP, (String) newValue) ? true : false;
 
 			} else if (preference == mM2sdExtfsValue) {
-				return Utils.fileWriteOneLine(M2SD_PATH_PROPS + M2SD_EXTFS_VALUE_PROP, (String) newValue) ? true : false;
+				return Utils.fileWriteOneLine(mPropsPath + M2SD_EXTFS_VALUE_PROP, (String) newValue) ? true : false;
 			}
 		}
 
