@@ -16,18 +16,21 @@
 
 package com.android.settings.cyanogenmod;
 
-import android.content.ContentResolver;
 import android.app.ActivityManagerNative;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.preference.ListPreference;
-import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
-import android.provider.Settings;
 import android.util.Log;
+import android.view.IWindowManager;
+import android.provider.Settings;
+import android.preference.CheckBoxPreference;
+import android.content.ContentResolver;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -61,11 +64,12 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         if (Utils.isScreenLarge()) {
             getPreferenceScreen().removePreference(findPreference(KEY_NOTIFICATION_DRAWER));
         }
-        if ((Utils.isScreenLarge() || !getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar)) && Settings.System.getInt(resolver,
-		    Settings.System.HAS_NAVIGATION_BAR, 0) != 1) {
-
-            getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
+        IWindowManager windowManager = IWindowManager.Stub.asInterface(ServiceManager.getService(Context.WINDOW_SERVICE));
+        try {
+            if (!windowManager.hasNavigationBar()) {
+                getPreferenceScreen().removePreference(findPreference(KEY_NAVIGATION_BAR));
+            }
+        } catch (RemoteException e) {
         }
 
 	mRecentAppListSearchKey = (CheckBoxPreference) findPreference(KEY_RECENT_APP_LIST_SEARCH_KEY);
