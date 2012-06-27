@@ -364,7 +364,7 @@
   <string-array name="profile_entries">
     <item>Bekapcsolva</item>
     <item>Kikapcsolva</item>
-    <item>Ne változtasd</item>
+    <item>Alapértelmezett</item>
   </string-array>
   <!-- Profile mode options. -->
   <string-array name="profile_connection_entries">
@@ -374,5 +374,6 @@
   <string-array name="location_entries_gps_source">
     <item>Használja a beépített GPS-t</item>
   </string-array>
+
   <!-- **** CYANOGENMOD EDITS END **** -->
 </resources>
