@@ -106,6 +106,8 @@
     <item msgid="1160193392455075561">"PEAP"</item>
     <item msgid="7981731051382306293">"TLS"</item>
     <item msgid="2892994535305020162">"TTLS"</item>
+    <item msgid="3903005646416131273">"SIM"</item>
+    <item msgid="3903005646416131274">"AKA"</item>
   </string-array>
     <!-- no translation found for wifi_p2p_wps_setup:0 (5085064298144493867) -->
     <!-- no translation found for wifi_p2p_wps_setup:1 (1624323946324499595) -->
@@ -141,6 +143,8 @@
     <item msgid="8615575908717909498">"PEAP"</item>
     <item msgid="8667872640594311615">"TLS"</item>
     <item msgid="7182812872984827322">"TTLS"</item>
+    <item msgid="8293923983095938433">"SIM"</item>
+    <item msgid="8293923983095938434">"AKA"</item>
   </string-array>
   <string-array name="wifi_phase2_entries">
     <item msgid="1818786254010764570">"Nagina"</item>
