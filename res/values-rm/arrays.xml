@@ -83,6 +83,13 @@
     <!-- no translation found for wifi_security_no_eap:1 (397579322683471524) -->
     <!-- no translation found for wifi_security_no_eap:2 (1968820975358150484) -->
     <!-- no translation found for wifi_eap_method:3 (435667726254379514) -->
+  <string-array name="wifi_eap_method">
+    <item msgid="1160193392455075561">"PEAP"</item>
+    <item msgid="7981731051382306293">"TLS"</item>
+    <item msgid="2892994535305020162">"TTLS"</item>
+    <item msgid="3903005646416131273">"SIM"</item>
+    <item msgid="3903005646416131274">"AKA"</item>
+  </string-array>
     <!-- no translation found for wifi_p2p_wps_setup:0 (5085064298144493867) -->
     <!-- no translation found for wifi_p2p_wps_setup:1 (1624323946324499595) -->
     <!-- no translation found for wifi_p2p_wps_setup:2 (5366790421523328066) -->
@@ -114,6 +121,13 @@
     <!-- no translation found for usage_stats_display_order_types:1 (3703676222230317933) -->
     <!-- no translation found for usage_stats_display_order_types:2 (2502754479975776899) -->
     <!-- no translation found for wifi_eap_entries:3 (2318274046749286642) -->
+  <string-array name="wifi_eap_entries">
+    <item msgid="8615575908717909498">"PEAP"</item>
+    <item msgid="8667872640594311615">"TLS"</item>
+    <item msgid="7182812872984827322">"TTLS"</item>
+    <item msgid="8293923983095938433">"SIM"</item>
+    <item msgid="8293923983095938434">"AKA"</item>
+  </string-array>
   <string-array name="wifi_phase2_entries">
     <item msgid="1818786254010764570">"Nagina"</item>
     <item msgid="6189918678874123056">"PAP"</item>

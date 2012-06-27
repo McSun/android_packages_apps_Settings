@@ -356,7 +356,23 @@ public class WifiConfigController implements TextWatcher,
             case AccessPoint.SECURITY_EAP:
                 config.allowedKeyManagement.set(KeyMgmt.WPA_EAP);
                 config.allowedKeyManagement.set(KeyMgmt.IEEE8021X);
-                config.eap.setValue((String) mEapMethodSpinner.getSelectedItem());
+
+		/* EAP-SIM Patch Start */
+			String eap = (String) mEapMethodSpinner.getSelectedItem();
+			config.eap.setValue( eap );
+
+			Log.d(WifiDialog.class.getName(), eap);
+
+			// check if an EAP-SIM/AKA method is chosen.
+			if( eap.contains("SIM")) {
+				config.pcsc.setValue("UICC 00 00");	// it is only necessary that the pcsc entry is available.
+				config.eap.setValue( "SIM AKA" );	// this will enable EAP-SIM for SIM and USIM
+
+			} else {
+				config.pcsc.setValue("UICC 00 00");	// it is only necessary that the pcsc entry is available.
+				config.eap.setValue( "AKA" );		// this will enable EAP-AKA
+			}
+		/* EAP-SIM Patch End */
 
                 config.phase2.setValue((mPhase2Spinner.getSelectedItemPosition() == 0) ? "" :
                         PHASE2_PREFIX + mPhase2Spinner.getSelectedItem());
@@ -388,6 +404,10 @@ public class WifiConfigController implements TextWatcher,
         config.proxySettings = mProxySettings;
         config.ipAssignment = mIpAssignment;
         config.linkProperties = new LinkProperties(mLinkProperties);
+
+	/* EAP-SIM Patch Start */
+	Log.d(WifiDialog.class.getName(), config.toString());
+	/* EAP-SIM Patch End */
 
         return config;
     }
