@@ -13,7 +13,7 @@ import com.android.settings.Utils;
 
 public class m2sdManagement extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 	
-	private static final String M2SD_PATH_PROPS = SystemProperties.get("ro.m2sd.path.props", "/data/property/");
+	private static final String M2SD_PATH_PROPS = SystemProperties.get("ro.m2sd.path.props", "/data/m2sd/property");
 
 	private static final String M2SD_SWITCH = "m2sd_switch";
 	private static final String M2SD_APPS_SWITCH = "m2sd_apps_switch";
