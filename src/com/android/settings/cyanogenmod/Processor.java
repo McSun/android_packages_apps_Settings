@@ -24,6 +24,7 @@ import java.io.IOException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -60,6 +61,8 @@ public class Processor extends SettingsPreferenceFragment implements
     public static final String GOV_FILE_SLEEP = "/data/property/cpu.sleep.governor";
     public static final String FREQ_MAX_FILE_SLEEP = "/data/property/cpu.sleep.scaling.max";
     public static final String FREQ_MIN_FILE_SLEEP = "/data/property/cpu.sleep.scaling.min";
+    public static final String ENABLE_FILE_SLEEP = "/data/property/cpu.sleep.switch";
+    public static final String ENABLE_PREF_SLEEP = "pref_cpu_enable_sleep";
 
     private static final String TAG = "CPUSettings";
 
@@ -76,6 +79,7 @@ public class Processor extends SettingsPreferenceFragment implements
     private ListPreference mGovernorSleepPref;
     private ListPreference mMinFrequencySleepPref;
     private ListPreference mMaxFrequencySleepPref;
+    private CheckBoxPreference mEnableSleepPref;
 
     private class CurCPUThread extends Thread {
         private boolean mInterrupt = false;
@@ -132,12 +136,20 @@ public class Processor extends SettingsPreferenceFragment implements
 	mMaxFrequencyPref = (ListPreference) prefScreen.findPreference(FREQ_MAX_PREF);
 	mMinFrequencySleepPref = (ListPreference) prefScreen.findPreference(FREQ_MIN_PREF_SLEEP);
 	mMaxFrequencySleepPref = (ListPreference) prefScreen.findPreference(FREQ_MAX_PREF_SLEEP);
+	mEnableSleepPref = (CheckBoxPreference) prefScreen.findPreference(ENABLE_PREF_SLEEP);
+
+	if (Utils.fileExists(ENABLE_FILE_SLEEP) == false || (temp = Utils.fileReadOneLine(ENABLE_FILE_SLEEP)) == null) {
+		mEnableSleepPref.setEnabled(false);
+
+	} else {
+		mEnableSleepPref.setChecked("1".equals(temp));
+	}
 
         /* Governer
         Some systems might not use governors */
         if (Utils.fileExists(GOV_LIST_FILE) == false || Utils.fileExists(GOV_FILE) == false || (temp = Utils.fileReadOneLine(GOV_FILE)) == null || (availableGovernorsLine = Utils.fileReadOneLine(GOV_LIST_FILE)) == null) {
-            prefScreen.removePreference(mGovernorPref);
-	    prefScreen.removePreference(mGovernorSleepPref);
+	    mGovernorPref.setEnabled(false);
+	    mGovernorSleepPref.setEnabled(false);
 
         } else {
 	    availableGovernors = availableGovernorsLine.split(" ");
@@ -282,6 +294,15 @@ public class Processor extends SettingsPreferenceFragment implements
             mCurCPUThread.join();
         } catch (InterruptedException e) {
         }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+	if (preference == mEnableSleepPref) {
+		return Utils.fileWriteOneLine(ENABLE_FILE_SLEEP, mEnableSleepPref.isChecked() ? "1" : "0") ? true : false;
+	}
+
+	return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

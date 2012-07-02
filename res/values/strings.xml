@@ -1719,6 +1719,7 @@
     <string name="cpu_set_on_boot_summary">Restore the processor settings on boot</string>
     <string name="cpu_wake_title">Normal State</string>
     <string name="cpu_sleep_title">Sleep State</string>
+    <string name="cpu_enable_sleep_title">Enable Sleep State</string>
 
     <!-- Memory Management -->
     <string name="memory_management_title">Memory management</string>
