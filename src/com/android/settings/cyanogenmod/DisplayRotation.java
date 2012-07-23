@@ -38,12 +38,14 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
     private static final String TAG = "DisplayRotation";
 
     private static final String KEY_ACCELEROMETER = "accelerometer";
+    private static final String KEY_ACCELEROMETER_LOCKSCREEN = "accelerometer_lockscreen";
     private static final String ROTATION_0_PREF = "display_rotation_0";
     private static final String ROTATION_90_PREF = "display_rotation_90";
     private static final String ROTATION_180_PREF = "display_rotation_180";
     private static final String ROTATION_270_PREF = "display_rotation_270";
 
     private CheckBoxPreference mAccelerometer;
+    private CheckBoxPreference mAccelerometerLockscreen;
     private CheckBoxPreference mRotation0Pref;
     private CheckBoxPreference mRotation90Pref;
     private CheckBoxPreference mRotation180Pref;
@@ -91,6 +93,11 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
         mRotation90Pref.setChecked((mode & ROTATION_90_MODE) != 0);
         mRotation180Pref.setChecked((mode & ROTATION_180_MODE) != 0);
         mRotation270Pref.setChecked((mode & ROTATION_270_MODE) != 0);
+
+        mAccelerometerLockscreen = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER_LOCKSCREEN);
+        mAccelerometerLockscreen.setChecked(Settings.System.getInt(getContentResolver(),
+               Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, 
+               getResources().getBoolean(com.android.internal.R.bool.config_enableLockScreenRotation) ? 1 : 0);
     }
 
     @Override
@@ -138,6 +145,9 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
             } catch (RemoteException exc) {
                 Log.w(TAG, "Unable to save auto-rotate setting");
             }
+        } else if (preference == mAccelerometerLockscreen) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, mAccelerometerLockscreen.isChecked() ? 1 : 0);
         } else if (preference == mRotation0Pref ||
                 preference == mRotation90Pref ||
                 preference == mRotation180Pref ||
