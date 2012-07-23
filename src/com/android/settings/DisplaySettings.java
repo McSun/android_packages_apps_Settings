@@ -62,6 +62,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ELECTRON_BEAM_CATEGORY_ANIMATION = "category_animation_options";
     private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
+    private static final String KEY_TRACKBALL_WAKE = "pref_trackball_wake";
 
     private static final String ROTATION_ANGLE_0 = "0";
     private static final String ROTATION_ANGLE_90 = "90";
@@ -70,6 +71,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String ROTATION_ANGLE_DELIM = ", ";
     private static final String ROTATION_ANGLE_DELIM_FINAL = " & ";
 
+    private CheckBoxPreference mTrackballWake;
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mElectronBeamAnimationOn;
     private CheckBoxPreference mElectronBeamAnimationOff;
@@ -198,6 +200,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
 
+        mTrackballWake = (CheckBoxPreference) findPreference(KEY_TRACKBALL_WAKE);
+        if (mTrackballWake != null) {
+               if(!getResources().getBoolean(R.bool.has_trackball)) {
+                        mTrackballWake.setEnabled(false);
+               } else {
+                        mTrackballWake.setChecked(Settings.System.getInt(resolver, Settings.System.TRACKBALL_WAKE_SCREEN, 1) == 1);
+               }
+        }
     }
 
     private void updateDisplayRotationPreferenceDescription() {
@@ -386,6 +396,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else if (preference == mVolumeWake) {
             Settings.System.putInt(getContentResolver(), Settings.System.VOLUME_WAKE_SCREEN,
                     mVolumeWake.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mTrackballWake) {
+            Settings.System.putInt(getContentResolver(), Settings.System.TRACKBALL_WAKE_SCREEN,
+                    mTrackballWake.isChecked() ? 1 : 0);
             return true;
         }
 
