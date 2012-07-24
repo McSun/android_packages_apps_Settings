@@ -54,4 +54,10 @@
         android:title="@string/navigation_bar_title" />
 -->
 
+    <CheckBoxPreference
+        android:key="search_display_recent_apps"
+        android:title="@string/search_display_recent_apps_title"
+        android:summary="@string/search_display_recent_apps_summary"
+        android:persistent="false" />
+
 </PreferenceScreen>

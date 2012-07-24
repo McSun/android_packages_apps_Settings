@@ -28,6 +28,9 @@
     <!-- Trackball -->
     <bool name="has_trackball">false</bool>
 
+    <!-- Toogle for using search as recent apps -->
+    <bool name="has_search_button">false</bool>
+
    <!-- Volume Rocker Wake Support. Some devices do not support (PMU) this.
          Setting to false will disable Volume Rocker Wake support -->
     <bool name="config_show_volumeRockerWake">true</bool>

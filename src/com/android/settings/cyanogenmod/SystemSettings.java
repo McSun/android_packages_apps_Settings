@@ -16,6 +16,8 @@
 
 package com.android.settings.cyanogenmod;
 
+import android.content.ContentResolver;
+import android.provider.Settings;
 import android.app.ActivityManagerNative;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -23,6 +25,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -37,11 +40,13 @@ public class SystemSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "SystemSettings";
 
+    private static final String KEY_SEARCH_DISPLAY_RECENT_APPS = "search_display_recent_apps";
     private static final String KEY_FONT_SIZE = "font_size";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
 
+    private CheckBoxPreference mSearchDisplayRecentApps;
     private ListPreference mFontSizePref;
     private PreferenceScreen mPhoneDrawer;
     private PreferenceScreen mTabletDrawer;
@@ -76,6 +81,15 @@ public class SystemSettings extends SettingsPreferenceFragment implements
                 getPreferenceScreen().removePreference(naviBar);
             }
         } catch (RemoteException e) {
+        }
+
+        mRecentAppListSearchKey = (CheckBoxPreference) findPreference(KEY_SEARCH_DISPLAY_RECENT_APPS);
+        if (mRecentAppListSearchKey != null) {
+            if (getResources().getBoolean(R.bool.has_search_button)) {
+                mRecentAppListSearchKey.setChecked(Settings.System.getInt(getContentResolver(), Settings.System.SEARCH_DISPLAY_RECENT_APPS_KEY, 0) == 1);
+            } else {
+                mRecentAppListSearchKey.setEnabled(false);
+            }
         }
     }
 
@@ -137,6 +151,12 @@ public class SystemSettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mRecentAppListSearchKey) {
+            Settings.System.putInt(getContentResolver(), Settings.System.SEARCH_DISPLAY_RECENT_APPS_KEY, mRecentAppListSearchKey.isChecked() ? 1 : 0);
+
+            return true;
+        }
+
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 

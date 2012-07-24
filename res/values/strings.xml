@@ -14,6 +14,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="search_display_recent_apps_title">Search as Recent Apps</string>
+    <string name="search_display_recent_apps_summary">Use the search key to access the list of recent apps</string>
+
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>
 
