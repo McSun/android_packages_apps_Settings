@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/dm_headline_ct"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+	<CheckBoxPreference
+                android:key="dm_enable_disk_manager_c"
+                android:title="@string/dm_enable_disk_manager_ct"
+                android:summary="@string/dm_enable_disk_manager_cs" />
+
+        <PreferenceCategory
+                android:key="dm_category_content_c"
+                android:title="@string/dm_category_content_ct"/>
+
+	<CheckBoxPreference
+                android:key="dm_move_apps_c"
+                android:title="@string/dm_move_apps_gt"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<CheckBoxPreference
+                android:key="dm_move_system_apps_c"
+                android:title="@string/dm_move_system_apps_gt"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<CheckBoxPreference
+                android:key="dm_move_dalvik_c"
+                android:title="@string/dm_move_dalvik_gt"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<CheckBoxPreference
+                android:key="dm_move_system_dalvik_c"
+                android:title="@string/dm_move_system_dalvik_gt"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<CheckBoxPreference
+                android:key="dm_move_data_c"
+                android:title="@string/dm_move_data_gt"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<ListPreference
+                android:key="dm_enable_cache_c"
+                android:title="@string/dm_enable_cache_gt"
+                android:dialogTitle="@string/dm_enable_cache_gt"
+                android:summary="@string/dm_enable_cache_cs"
+                android:entries="@array/dm_state_entries"
+                android:entryValues="@array/dm_state_values"
+                android:dependency="dm_enable_disk_manager_c" />
+
+        <PreferenceCategory
+                android:key="dm_category_memory_c"
+                android:title="@string/dm_category_memory_ct"/>
+
+	<CheckBoxPreference
+                android:key="dm_enable_swap_c"
+                android:title="@string/dm_enable_swap_gt"
+                android:summary="@string/dm_enable_swap_cs"
+                android:dependency="dm_enable_disk_manager_c" />
+
+        <PreferenceCategory
+                android:key="dm_category_disk_c"
+                android:title="@string/dm_category_disk_ct"/>
+
+	<CheckBoxPreference
+                android:key="dm_enable_reversed_mount_c"
+                android:title="@string/dm_enable_reversed_mount_gt"
+                android:summary="@string/dm_enable_reversed_mount_cs"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<CheckBoxPreference
+                android:key="dm_run_sdext_fschk_c"
+                android:title="@string/dm_run_sdext_fschk_gt"
+                android:summary="@string/dm_run_sdext_fschk_cs"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<ListPreference
+                android:key="dm_set_sdext_fstype_c"
+                android:title="@string/dm_set_sdext_fstype_gt"
+                android:dialogTitle="@string/dm_set_sdext_fstype_gt"
+                android:summary="@string/dm_set_sdext_fstype_cs"
+                android:entries="@array/dm_fstype_entries"
+                android:entryValues="@array/dm_fstype_values"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<ListPreference
+                android:key="dm_set_sdcard_readahead_c"
+                android:title="@string/dm_set_sdcard_readahead_gt"
+                android:dialogTitle="@string/dm_set_sdcard_readahead_gt"
+                android:summary="@string/dm_set_sdcard_readahead_cs"
+                android:entries="@array/dm_readahead_entries"
+                android:entryValues="@array/dm_readahead_values"
+                android:dependency="dm_enable_disk_manager_c" />
+
+	<ListPreference
+                android:key="dm_enable_sdext_journal_c"
+                android:title="@string/dm_enable_sdext_journal_gt"
+                android:dialogTitle="@string/dm_enable_sdext_journal_gt"
+                android:summary="@string/dm_enable_sdext_journal_cs"
+                android:entries="@array/dm_state_entries"
+                android:entryValues="@array/dm_state_values"
+                android:dependency="dm_enable_disk_manager_c" />
+
+</PreferenceScreen>

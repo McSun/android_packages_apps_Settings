@@ -21,6 +21,12 @@
 
     <PreferenceScreen
         android:key="processor"
+        android:fragment="com.android.settings.spazedog.DiskManagerStatus"
+        android:title="@string/dm_headline_st"
+        android:summary="@string/dm_headline_ss" />
+
+    <PreferenceScreen
+        android:key="processor"
         android:fragment="com.android.settings.cyanogenmod.Processor"
         android:title="@string/processor_title"
         android:summary="@string/processor_summary" />

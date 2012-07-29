@@ -26,6 +26,9 @@ import android.preference.PreferenceScreen;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.Utils;
+
+import com.android.settings.spazedog.DiskManagerUtils;
 
 /**
  * Performance Settings
@@ -83,6 +86,10 @@ public class PerformanceSettings extends SettingsPreferenceFragment
                     });
 
             alertDialog.show();
+
+            if (!Utils.fileExists(DiskManagerUtils.SCRIPT_LOCATION)) {
+                prefSet.removePreference(prefSet.findPreference("diskManager_settings"));
+            }
         }
     }
 

@@ -18,6 +18,56 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- The below items is used by the SpazeDog Disk Manager -->
+    <string-array name="dm_state_entries">
+        <item>Auto</item>
+        <item>Enabled</item>
+        <item>Disabled</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="dm_state_values" translatable="false">
+        <item>-1</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="dm_fstype_entries">
+        <item>Auto</item>
+        <item>Ext2</item>
+        <item>Ext3</item>
+        <item>Ext4</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="dm_fstype_values" translatable="false">
+        <item>auto</item>
+        <item>ext2</item>
+        <item>ext3</item>
+        <item>ext4</item>
+    </string-array>
+
+    <string-array name="dm_readahead_entries">
+        <item>256kb</item>
+        <item>512kb</item>
+        <item>768kb</item>
+        <item>1024kb</item>
+        <item>2048kb</item>
+        <item>4096kb</item>
+        <item>8192kb</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="dm_readahead_values" translatable="false">
+        <item>256</item>
+        <item>512</item>
+        <item>768</item>
+        <item>1024</item>
+        <item>2048</item>
+        <item>4096</item>
+        <item>8192</item>
+    </string-array>
+
     <!-- Choices for timezone picker first level.
          These values will be used as search terms for TimeZone displayName
          strings. --> <skip />
