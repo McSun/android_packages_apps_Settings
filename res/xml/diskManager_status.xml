@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/dm_headline_st"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+        <Preference
+                android:key="dm_enable_disk_manager_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_headline_st"
+                android:selectable="false" />
+
+        <PreferenceScreen
+                android:key="dm_settings_fragment_s"
+                android:fragment="com.android.settings.spazedog.DiskManagerSettings"
+                android:title="@string/dm_headline_ct" />
+
+        <!-- <PreferenceScreen
+                android:key="dm_log_fragment_s"
+                android:fragment="com.android.settings.spazedog.diskManagerLog"
+                android:title="@string/dm_headline_lt" /> -->
+
+        <PreferenceCategory
+                android:key="dm_category_storage_s"
+                android:title="@string/dm_category_storage_st"/>
+
+        <Preference
+                android:key="dm_storage_internal_s"
+                style="?android:preferenceInformationStyle"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_storage_external_s"
+                style="?android:preferenceInformationStyle"
+                android:selectable="false" />
+
+        <PreferenceCategory
+                android:key="dm_category_content_s"
+                android:title="@string/dm_category_content_st"/>
+
+        <Preference
+                android:key="dm_move_apps_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_move_apps_gt"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_move_system_apps_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_move_system_apps_gt"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_move_dalvik_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_move_dalvik_gt"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_move_system_dalvik_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_move_system_dalvik_gt"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_move_data_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_move_data_gt"
+                android:selectable="false" />
+
+        <Preference
+                android:key="dm_enable_cache_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_enable_cache_gt"
+                android:selectable="false" />
+
+        <PreferenceCategory
+                android:key="dm_category_memory_s"
+                android:title="@string/dm_category_memory_st"/>
+
+        <Preference
+                android:key="dm_enable_swap_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_enable_swap_gt"
+                android:selectable="false" />
+
+        <PreferenceCategory
+                android:key="dm_category_disk_s"
+                android:title="@string/dm_category_disk_st"/>
+
+        <Preference
+                android:key="dm_enable_reversed_mount_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_enable_reversed_mount_gt"
+                android:selectable="false" />
+
+	<Preference
+                android:key="dm_run_sdext_fschk_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_run_sdext_fschk_gt"
+                android:selectable="false" />
+
+	<Preference
+                android:key="dm_set_sdext_fstype_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_set_sdext_fstype_gt"
+                android:selectable="false" />
+
+	<Preference
+                android:key="dm_set_sdcard_readahead_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_set_sdcard_readahead_gt"
+                android:selectable="false" />
+
+	<Preference
+                android:key="dm_enable_sdext_journal_s"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dm_enable_sdext_journal_gt"
+                android:selectable="false" />
+
+</PreferenceScreen>

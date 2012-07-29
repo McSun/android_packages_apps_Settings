@@ -16,6 +16,82 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="dm_status_msg_ok">Status: Ok</string>
+    <string name="dm_status_msg_warning">Status: Warning</string>
+    <string name="dm_status_msg_error">Status: Error</string>
+    <string name="dm_status_msg_attention">Status: Attention</string>
+
+    <string name="dm_status_loaded">%1$s (Loaded)</string>
+    <string name="dm_status_unloaded">%1$s (Unloaded)</string>
+
+    <string name="dm_status_enabled">%1$s (Enabled)</string>
+    <string name="dm_status_disabled">%1$s (Disabled)</string>
+    <string name="dm_status_unknown">%1$s (Unknown)</string>
+
+    <string name="dm_status_value">%1$s (%2$s)</string>
+
+    <string name="dm_status_unknown_fragment">Unknown</string>
+
+    <!-- Headlines -->
+    <string name="dm_headline_st">Disk Manager</string>
+    <string name="dm_headline_ct">Disk Manager Settings</string>
+    <string name="dm_headline_lt">View Log File</string>
+    <string name="dm_headline_ss">Customize the build-in sd-ext script</string>
+
+    <!-- Shared titles for move_* elements -->
+    <string name="dm_move_apps_gt">Application</string>
+    <string name="dm_move_system_apps_gt">System Applications</string>
+    <string name="dm_move_dalvik_gt">Dalvik Cache</string>
+    <string name="dm_move_system_dalvik_gt">System Dalvik Cache</string>
+    <string name="dm_move_data_gt">Application Data</string>
+
+    <!-- Config fragments for move_* element summaries -->
+    <string name="dm_move_apps_cs">applications</string>
+    <string name="dm_move_system_apps_cs">system applications</string>
+    <string name="dm_move_dalvik_cs">dalvik cache</string>
+    <string name="dm_move_system_dalvik_cs">system dalvik cache</string>
+    <string name="dm_move_data_cs">application data</string>
+
+    <string name="dm_move_internal_cs">Move %1$s to internal storage</string>
+    <string name="dm_move_external_cs">Move %1$s to external storage</string>
+
+    <!-- Storage usage status -->
+    <string name="dm_storage_internal_st">Internal Data (%1$s)</string>
+    <string name="dm_storage_external_st">External Data (%1$s)</string>
+    <string name="dm_storage_usage_ss">Usage: %1$s of %2$s</string>
+
+    <!-- Categories -->
+    <string name="dm_category_content_ct">Content Configuration</string>
+    <string name="dm_category_memory_ct">Memory Configuration</string>
+    <string name="dm_category_disk_ct">Disk Configuration</string>
+
+    <string name="dm_category_content_st">Content Status</string>
+    <string name="dm_category_storage_st">Storage Status</string>
+    <string name="dm_category_memory_st">Memory Status</string>
+    <string name="dm_category_disk_st">Disk Status</string>
+
+    <!-- Other config titles and summaries -->
+    <string name="dm_enable_disk_manager_cs">Warning! In disabled state, content already moved to sd-ext is not moved back. First disable all the options, reboot and then disable this.</string>
+    <string name="dm_enable_reversed_mount_cs">Switch the /data and /sd-ext mount points</string>
+    <string name="dm_enable_swap_cs">Activate SWAP partition on boot (3td partition on the sdcard)</string>
+    <string name="dm_run_sdext_fschk_cs">Run file system checks during boot</string>
+    <string name="dm_enable_cache_cs">Manage cache location by force or depended on the internal size (auto)</string>
+    <string name="dm_enable_sdext_journal_cs">Enable Journal on ext(3/4) file system (Not recommended)</string>
+    <string name="dm_set_sdext_fstype_cs">Which file system to mount the sd-ext partition as</string>
+    <string name="dm_set_sdcard_readahead_cs">The readahead value for the sdcard. Note that this will also affect the fat32 partition</string>
+
+    <string name="dm_enable_disk_manager_ct">Enable</string>
+    <string name="dm_enable_reversed_mount_gt">Reversed Mount</string>
+    <string name="dm_enable_swap_gt">SWAP</string>
+    <string name="dm_run_sdext_fschk_gt">File system check</string>
+    <string name="dm_enable_cache_gt">Cache Management</string>
+    <string name="dm_enable_sdext_journal_gt">Ext4 Journal</string>
+    <string name="dm_set_sdext_fstype_gt">File system type</string>
+    <string name="dm_set_sdcard_readahead_gt">SDCard Readahead</string>
+
+    <string name="search_display_recent_apps_title">Search as Recent Apps</string>
+    <string name="search_display_recent_apps_summary">Use the search key to access the list of recent apps</string>
+
     <!-- String for ShortcutPickHelper -->
     <string name="picker_activities">Activities</string>
     <string name="select_custom_app_title">Select custom application</string>

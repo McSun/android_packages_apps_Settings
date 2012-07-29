@@ -28,6 +28,8 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
+import com.android.settings.spazedog.DiskManagerUtils;
+
 /**
  * Performance Settings
  */
@@ -70,6 +72,10 @@ public class PerformanceSettings extends SettingsPreferenceFragment
 
             String use16bppAlpha = SystemProperties.get(USE_16BPP_ALPHA_PROP, "0");
             mUse16bppAlphaPref.setChecked("1".equals(use16bppAlpha));
+
+            if (!Utils.fileExists(DiskManagerUtils.SCRIPT_LOCATION)) {
+                prefSet.removePreference(prefSet.findPreference("diskManager_settings"));
+            }
         }
     }
 
