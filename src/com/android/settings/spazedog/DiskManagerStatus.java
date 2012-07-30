@@ -92,7 +92,7 @@ public class DiskManagerStatus extends SettingsPreferenceFragment {
                                                         lStatusFormat = String.format(getString(R.string.dm_status_value), lStatusMsg, lStatusValue != null ? lStatusValue : getString(R.string.dm_status_unknown_fragment));
 
                                                 } else if (ELEMENTS[i].action == "execute") {
-                                                        lStatusFormat = lStatusMsg;
+                                                        lStatusFormat = lStatusValue != null ? lStatusMsg : getString(R.string.dm_status_msg_disabled);
 
                                                 } else {
                                                         lStatusFormat = String.format(getString(lStatusValue != null && lStatusValue.equals("1") ? R.string.dm_status_loaded : R.string.dm_status_unloaded), lStatusMsg);
