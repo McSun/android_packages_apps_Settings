@@ -25,6 +25,10 @@
         android:title="@string/cpu_cur_freq_title"
         android:selectable="false" />
 
+    <PreferenceCategory
+        android:key="pref_cpu_category_wake"
+        android:title="@string/cpu_wake_title"/>
+
     <ListPreference
         android:key="pref_cpu_gov"
         android:dialogTitle="@string/cpu_governors_title"
@@ -44,5 +48,32 @@
         android:key="pref_cpu_set_on_boot"
         android:title="@string/cpu_set_on_boot"
         android:summary="@string/cpu_set_on_boot_summary"/>
+
+    <PreferenceCategory
+        android:key="pref_cpu_category_sleep"
+        android:title="@string/cpu_sleep_title"/>
+
+    <ListPreference
+        android:key="pref_cpu_gov_sleep"
+        android:dialogTitle="@string/cpu_governors_title"
+        android:title="@string/cpu_governors_title"
+        android:dependency="pref_cpu_enable_sleep" />
+
+    <ListPreference
+        android:key="pref_cpu_freq_min_sleep"
+        android:dialogTitle="@string/cpu_min_freq_title"
+        android:title="@string/cpu_min_freq_title"
+        android:dependency="pref_cpu_enable_sleep" />
+
+    <ListPreference
+        android:key="pref_cpu_freq_max_sleep"
+        android:dialogTitle="@string/cpu_max_freq_title"
+        android:title="@string/cpu_max_freq_title"
+        android:dependency="pref_cpu_enable_sleep" />
+
+    <CheckBoxPreference
+        android:key="pref_cpu_enable_sleep"
+        android:dialogTitle="@string/cpu_enable_sleep_title"
+        android:title="@string/cpu_enable_sleep_title" />
 
 </PreferenceScreen>
