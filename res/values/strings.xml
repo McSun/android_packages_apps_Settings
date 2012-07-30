@@ -58,6 +58,7 @@
     <!-- Storage usage status -->
     <string name="dm_storage_internal_st">Internal Data (%1$s)</string>
     <string name="dm_storage_external_st">External Data (%1$s)</string>
+    <string name="dm_storage_cache_st">Cache (%1$s)</string>
     <string name="dm_storage_usage_ss">Usage: %1$s of %2$s</string>
 
     <!-- Categories -->

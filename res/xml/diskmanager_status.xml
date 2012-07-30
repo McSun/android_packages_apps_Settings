@@ -35,6 +35,11 @@
                 style="?android:preferenceInformationStyle"
                 android:selectable="false" />
 
+        <Preference
+                android:key="dm_storage_cache_s"
+                style="?android:preferenceInformationStyle"
+                android:selectable="false" />
+
         <PreferenceCategory
                 android:key="dm_category_content_s"
                 android:title="@string/dm_category_content_st"/>
@@ -95,25 +100,25 @@
                 android:title="@string/dm_enable_reversed_mount_gt"
                 android:selectable="false" />
 
-	<Preference
+        <Preference
                 android:key="dm_run_sdext_fschk_s"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/dm_run_sdext_fschk_gt"
                 android:selectable="false" />
 
-	<Preference
+        <Preference
                 android:key="dm_set_sdext_fstype_s"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/dm_set_sdext_fstype_gt"
                 android:selectable="false" />
 
-	<Preference
+        <Preference
                 android:key="dm_set_sdcard_readahead_s"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/dm_set_sdcard_readahead_gt"
                 android:selectable="false" />
 
-	<Preference
+        <Preference
                 android:key="dm_enable_sdext_journal_s"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/dm_enable_sdext_journal_gt"

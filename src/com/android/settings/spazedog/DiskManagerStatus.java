@@ -31,6 +31,7 @@ public class DiskManagerStatus extends SettingsPreferenceFragment {
         private Preference DISK_MANAGER;
         private Preference INTERNAL_STORAGE;
         private Preference EXTERNAL_STORAGE;
+        private Preference CACHE_STORAGE;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +111,7 @@ public class DiskManagerStatus extends SettingsPreferenceFragment {
 
                         INTERNAL_STORAGE = (Preference) prefscreen.findPreference("dm_storage_internal_s");
                         EXTERNAL_STORAGE = (Preference) prefscreen.findPreference("dm_storage_external_s");
+                        CACHE_STORAGE = (Preference) prefscreen.findPreference("dm_storage_cache_s");
 
                         if (INTERNAL_STORAGE != null && EXTERNAL_STORAGE != null) {
                                 if (isActive) {
@@ -121,9 +123,15 @@ public class DiskManagerStatus extends SettingsPreferenceFragment {
                                         EXTERNAL_STORAGE.setTitle( String.format(getString(R.string.dm_storage_external_st), isReversed ? "/data" : "/sd-ext") );
                                         EXTERNAL_STORAGE.setSummary( String.format(getString(R.string.dm_storage_usage_ss), DiskManagerUtils.getMB(DiskManagerUtils.diskUsage(isReversed ? "/data" : "/sd-ext")), DiskManagerUtils.getMB(DiskManagerUtils.diskTotal(isReversed ? "/data" : "/sd-ext"))) );
 
+                                        String cacheLocation = Utils.fileExists( (lPath = String.format(DiskManagerUtils.PROPS_LOCATION, "cache.destination"))) ? Utils.fileReadOneLine(lPath) : "/cache";
+
+                                        CACHE_STORAGE.setTitle( String.format(getString(R.string.dm_storage_cache_st), cacheLocation) );
+                                        CACHE_STORAGE.setSummary( String.format(getString(R.string.dm_storage_usage_ss), DiskManagerUtils.getMB(DiskManagerUtils.diskUsage("/cache")), DiskManagerUtils.getMB(DiskManagerUtils.diskTotal("/cache"))) );
+
                                 } else {
                                         prefscreen.removePreference(INTERNAL_STORAGE);
                                         prefscreen.removePreference(EXTERNAL_STORAGE);
+                                        prefscreen.removePreference(CACHE_STORAGE);
                                 }
 
                         } else {

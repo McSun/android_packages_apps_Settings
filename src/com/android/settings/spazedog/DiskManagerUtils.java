@@ -7,6 +7,7 @@ public class DiskManagerUtils {
         private static final String SIZE_PRIFIX[] = {"b","Kb","Mb","Gb"};
 
         public static final String CONFIG_LOCATION = "/data/property/disk.manager.%s";
+        public static final String PROPS_LOCATION = "/props/%s";
         public static final String PROPS_STATUS_LOCATION = "/props/status.%s";
         public static final String PROPS_CONFIG_LOCATION = "/props/config.%s";
         public static final String PROPS_ATTENTION_LOCATION = "/props/attention.%s";
