@@ -97,7 +97,7 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
         mAccelerometerLockscreen = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER_LOCKSCREEN);
         mAccelerometerLockscreen.setChecked(Settings.System.getInt(getContentResolver(),
                Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, 
-               getResources().getBoolean(com.android.internal.R.bool.config_enableLockScreenRotation) ? 1 : 0);
+               getResources().getBoolean(com.android.internal.R.bool.config_enableLockScreenRotation) ? 1 : 0) == 1 ? true : false);
     }
 
     @Override
