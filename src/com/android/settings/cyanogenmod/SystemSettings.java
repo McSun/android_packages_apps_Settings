@@ -50,6 +50,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements
     private ListPreference mFontSizePref;
     private PreferenceScreen mPhoneDrawer;
     private PreferenceScreen mTabletDrawer;
+    private CheckBoxPreference mRecentAppListSearchKey;
 
     private final Configuration mCurConfig = new Configuration();
 
