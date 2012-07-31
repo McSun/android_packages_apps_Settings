@@ -118,6 +118,7 @@ public class Processor extends SettingsPreferenceFragment implements
         mMinFrequencyFormat = getString(R.string.cpu_min_freq_summary);
         mMaxFrequencyFormat = getString(R.string.cpu_max_freq_summary);
 
+        String[] availableGovernors = Utils.fileReadOneLine(GOV_LIST_FILE).split(" ");
         String[] availableFrequencies = new String[0];
 	String[] availableGovernors = new String[0];
         String[] frequencies;
@@ -125,9 +126,17 @@ public class Processor extends SettingsPreferenceFragment implements
 	String availableFrequenciesLine;
         String temp;
 
+        frequencies = new String[availableFrequencies.length];
+        for (int i = 0; i < frequencies.length; i++) {
+            frequencies[i] = toMHz(availableFrequencies[i]);
+        }
+
         addPreferencesFromResource(R.xml.processor_settings);
 
         PreferenceScreen prefScreen = getPreferenceScreen();
+
+        // Governer
+        temp = Utils.fileReadOneLine(GOV_FILE);
 
         mGovernorPref = (ListPreference) prefScreen.findPreference(GOV_PREF);
 	mGovernorSleepPref = (ListPreference) prefScreen.findPreference(GOV_PREF_SLEEP);
@@ -154,11 +163,8 @@ public class Processor extends SettingsPreferenceFragment implements
         } else {
 	    availableGovernors = availableGovernorsLine.split(" ");
 
-	    mGovernorPref.setEntryValues(availableGovernors);
-	    mGovernorPref.setEntries(availableGovernors);
-	    mGovernorPref.setValue(temp);
-	    mGovernorPref.setSummary(String.format(mGovernorFormat, temp));
-	    mGovernorPref.setOnPreferenceChangeListener(this);
+        // Min frequency
+        temp = Utils.fileReadOneLine(FREQ_MIN_FILE);
 
 	    if (Utils.fileExists(GOV_FILE_SLEEP) == false || (temp = Utils.fileReadOneLine(GOV_FILE_SLEEP)) == null) {
 		    mGovernorSleepPref.setEnabled(false);

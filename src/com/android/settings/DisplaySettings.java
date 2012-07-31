@@ -47,11 +47,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_AUTOMATIC_BACKLIGHT = "backlight_widget";
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
-    private static final String KEY_BATTERY_PULSE = "battery_pulse";
+    private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_ELECTRON_BEAM_ANIMATION_ON = "electron_beam_animation_on";
     private static final String KEY_ELECTRON_BEAM_ANIMATION_OFF = "electron_beam_animation_off";
     private static final String KEY_ELECTRON_BEAM_CATEGORY_ANIMATION = "category_animation_options";
+    private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
     private static final String KEY_TRACKBALL_WAKE = "pref_trackball_wake";
     private static final String KEY_HAS_NAVIGATION_BAR = "has_navigation_bar";
@@ -66,10 +67,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mVolumeWake;
     private CheckBoxPreference mTrackballWake;
     private CheckBoxPreference mNavigationBar;
-    private CheckBoxPreference mBatteryPulse;
     private CheckBoxPreference mElectronBeamAnimationOn;
     private CheckBoxPreference mElectronBeamAnimationOff;
     private PreferenceScreen mNotificationPulse;
+    private PreferenceScreen mBatteryPulse;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -123,15 +124,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 		    Settings.System.HAS_NAVIGATION_BAR, 0) == 1);
 	}
 
-        mBatteryPulse = (CheckBoxPreference) findPreference(KEY_BATTERY_PULSE);
+        mBatteryPulse = (PreferenceScreen) findPreference(KEY_BATTERY_LIGHT);
         if (mBatteryPulse != null) {
             if (getResources().getBoolean(
                     com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
                 getPreferenceScreen().removePreference(mBatteryPulse);
             } else {
-                mBatteryPulse.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.BATTERY_LIGHT_PULSE, 1) == 1);
-                mBatteryPulse.setOnPreferenceChangeListener(this);
+                updateBatteryPulseDescription();
             }
         }
 
@@ -163,8 +162,14 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mVolumeWake = (CheckBoxPreference) findPreference(KEY_VOLUME_WAKE);
         if (mVolumeWake != null) {
-            mVolumeWake.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
+            if (!getResources().getBoolean(R.bool.config_show_volumeRockerWake)) {
+                getPreferenceScreen().removePreference(mVolumeWake);
+                getPreferenceScreen().removePreference((PreferenceCategory) findPreference(KEY_WAKEUP_CATEGORY));
+            } else {
+                mVolumeWake.setChecked(Settings.System.getInt(resolver,
+                        Settings.System.VOLUME_WAKE_SCREEN, 0) == 1);
+            }
+
         }
 
 	mTrackballWake = (CheckBoxPreference) findPreference(KEY_TRACKBALL_WAKE);
@@ -281,11 +286,21 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
+    private void updateBatteryPulseDescription() {
+        if (Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1) {
+            mBatteryPulse.setSummary(getString(R.string.notification_light_enabled));
+        } else {
+            mBatteryPulse.setSummary(getString(R.string.notification_light_disabled));
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
         updateDisplayRotationPreferenceDescription();
         updateLightPulseDescription();
+        updateBatteryPulseDescription();
 
         getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.ACCELEROMETER_ROTATION), true,
@@ -306,11 +321,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.HAS_NAVIGATION_BAR,
                     value ? 1 : 0);
             return true;
-        }  else if (preference == mBatteryPulse) {
-            boolean value = mBatteryPulse.isChecked();
-            Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_LIGHT_PULSE,
-                    value ? 1 : 0);
-        } else if (preference == mElectronBeamAnimationOn) {
+        }  else if (preference == mElectronBeamAnimationOn) {
             Settings.System.putInt(getContentResolver(), Settings.System.ELECTRON_BEAM_ANIMATION_ON,
                     mElectronBeamAnimationOn.isChecked() ? 1 : 0);
             return true;
@@ -323,10 +334,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     mVolumeWake.isChecked() ? 1 : 0);
             return true;
         }else if (preference == mTrackballWake) {
-	    Settings.System.putInt(getContentResolver(), Settings.System.TRACKBALL_WAKE_SCREEN,
-		    mTrackballWake.isChecked() ? 1 : 0);
-	    return true;
-	}
+	        Settings.System.putInt(getContentResolver(), Settings.System.TRACKBALL_WAKE_SCREEN,
+		        mTrackballWake.isChecked() ? 1 : 0);
+	        return true;
+	    }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }

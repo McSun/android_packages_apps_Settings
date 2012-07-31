@@ -678,7 +678,6 @@
     <string name="automatic_brightness" msgid="5014143533884135461">"Автонастройка"</string>
     <string name="title_font_size" msgid="4405544325522105222">"Размер шрифта"</string>
     <string name="dialog_title_font_size" msgid="2231507851258955038">"Размер шрифта"</string>
-<string name="battery_pulse_title">Индикация низкого заряда батареи</string>
     <string name="sim_lock_settings" msgid="3392331196873564292">"Настройки блокировки SIM-карты"</string>
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"Настроить блокировку"</string>
     <string name="sim_lock_settings_title" msgid="9018585580955414596">"Блокировка SIM-карты"</string>
@@ -1648,6 +1647,14 @@
     <string name="stubbed">Временная заглушка</string>
     <string name="stubbed_summary">Временная заглушка до добавления функционала</string>
 
+    <!-- Battery light settings #CM -->
+    <string name="battery_light_title">Индикация батареи</string>
+    <string name="battery_low_pulse_title">Индикация разрядки батареи</string>
+    <string name="battery_light_list_title">Цвета</string>
+    <string name="battery_light_low_color_title">Батарея разряжена</string>
+    <string name="battery_light_medium_color_title">Заряжается</string>
+    <string name="battery_light_full_color_title">Полностью заряжена</string>
+
     <!-- Backlight #CM -->
     <string name="backlight_title">Автоматическая подсветка</string>
     <string name="backlight_summary">Тонкая настройка уровней и фильтрации</string>
@@ -2185,11 +2192,15 @@
     <string name="profile_write_failed">Записать тег не удалось!</string>
     <string name="profile_selected">Выбран профиль: %1$s</string>
     <string name="profile_nfc_text">Запись NFC тега для профиля позволит прикосновением к тегу выбрать нужный профиль. При повторном нажатии будет выбран ранее используемый профиль.</string>
+    <string name="profile_unknown_nfc_tag">Неизвестный профиль</string>
+    <string name="profile_add_nfc_text">Этот NFC тег присвоен неизвестному профилю. Назначение этого NFC тега к существующему профилю позволит использовать его в будущем.</string>
+    <string name="profile_select">Выберите профиль</string>
+
 
     <!-- UI debug setting: kill app long-press back [CHAR LIMIT=25] -->
-    <string name="kill_app_longpress_back">Закрытие приложений</string>
+    <string name="kill_app_longpress_back">Закрытие приложения</string>
     <!-- UI debug settting: kill app long-press back [CHAR LIMIT=50] -->
-    <string name="kill_app_longpress_back_summary">Долгое нажатие Назад закрывает запущенные приложения</string>
+    <string name="kill_app_longpress_back_summary">Долгое нажатие кнопки Назад закроет запущенное приложение</string>
 
     <!-- GPS Source selection -->
     <string name="location_gps_source_title">Источники GPS</string>
@@ -2244,4 +2255,19 @@
     <!-- Status bar notification count -->
     <string name="status_bar_notif_count_title">Счётчик уведомлений</string>
     <string name="status_bar_notif_count_summary">Показывать количество новых уведомлений в строке состояния</string>
+
+    <string name="increasing_ring_title">Возрастающая громкость звонка</string>
+    <!-- Sound settings screen, the caption of the checkbox for making incoming calls increase in volume -->
+    <string name="checkbox_increasing_ring">Включить</string>
+    <!-- Sound settings screen, the title of the volume bar to adjust the minimum increasing ring volume -->
+    <string name="increasing_ring_min_volume_title">Начальная громкость звонка</string>
+    <string name="increasing_ring_volume_notice">Примечание:\nЕсли стартовая громкость рингтона выше установленной громкости звонка, рингтон будет воспроизведён на громкости, установленной в системе.</string>
+    <string name="increasing_ring_interval_title">Интервал увеличения</string>
+    <string name="increasing_ring_interval_eachring">При каждом гудке</string>
+    <string name="increasing_ring_interval_half_second">0.5 секунды</string>
+    <string name="increasing_ring_interval_1second">1 секунда</string>
+    <string name="increasing_ring_interval_2seconds">2 секунды</string>
+    <string name="increasing_ring_interval_3seconds">3 секунды</string>
+    <string name="increasing_ring_interval_5seconds">5 секунд</string>
+    <string name="increasing_ring_interval_10seconds">10 секунд</string>
 </resources>

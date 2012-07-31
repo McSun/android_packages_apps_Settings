@@ -65,6 +65,9 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        boolean hasRotationLock = this.getResources().getBoolean(com.android
+                .internal.R.bool.config_hasRotationLockSwitch);
+
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.display_rotation);
@@ -75,10 +78,14 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
         mAccelerometer.setPersistent(false);
 
         mAccelerometerLS = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER_LOCKSCREEN);
-	if (mAccelerometerLS != null) {
-		mAccelerometerLS.setChecked(Settings.System.getInt(getContentResolver(),
-			Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, 1) == 1);	
-	}
+        if (hasRotationLock) {
+                mAccelerometer.setEnabled(false);
+                mAccelerometerLS.setEnabled(false);
+
+        } else {
+		    mAccelerometerLS.setChecked(Settings.System.getInt(getContentResolver(),
+			    Settings.System.ACCELEROMETER_LOCKSCREEN_ROTATION, 1) == 1);
+        }
 
         mRotation0Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_0_PREF);
         mRotation90Pref = (CheckBoxPreference) prefSet.findPreference(ROTATION_90_PREF);
@@ -146,7 +153,7 @@ public class DisplayRotation extends SettingsPreferenceFragment implements OnPre
 			mAccelerometerLS.isChecked() ? 1 : 0);
             return true;
 
-	} else if (preference == mRotation0Pref ||
+	    } else if (preference == mRotation0Pref ||
                 preference == mRotation90Pref ||
                 preference == mRotation180Pref ||
                 preference == mRotation270Pref) {
