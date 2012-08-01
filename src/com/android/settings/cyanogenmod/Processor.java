@@ -118,7 +118,6 @@ public class Processor extends SettingsPreferenceFragment implements
         mMinFrequencyFormat = getString(R.string.cpu_min_freq_summary);
         mMaxFrequencyFormat = getString(R.string.cpu_max_freq_summary);
 
-        String[] availableGovernors = Utils.fileReadOneLine(GOV_LIST_FILE).split(" ");
         String[] availableFrequencies = new String[0];
 	String[] availableGovernors = new String[0];
         String[] frequencies;
